@@ -8,6 +8,7 @@ public class Main {
     public static int[] heroesDamage = {25, 20, 15};
     public static String[] heroesAttackType = {"Physical", "Magical", "Kinetic", "Medic"};
     public static int roundNumber = 0;
+  public static int MedicSupport = randHealth();
 
     public static void main(String[] args) {
         printStatistics();
@@ -22,7 +23,7 @@ public class Main {
         bossHits();
         heroesHit();
         printStatistics();
-        MedicWorks()
+        MedicWorks();
     }
 
     public static void printStatistics() {
@@ -101,15 +102,14 @@ public class Main {
             }
         }
     }
-
-    public static boolean isMedicDie() {
-        if (heroesHealth[4] <= 0) {
-            System.out.println("Medic is die");
-            return true;
-        }
-        MedicWorks();
-        return false;
+    public static int randHealth() {
+        int min = 20;
+        int max = 40;
+        int randomHealth = min + (int) (Math.random() * max);
+        return randomHealth;
     }
+
+    
 
     public static void MedicWorks() {
         Random random = new Random();
@@ -121,5 +121,14 @@ public class Main {
 
             }
         }
+    }
+
+    public static boolean isMedicDie() {
+        if (heroesHealth[4] <= 0) {
+            System.out.println("Medic is die");
+            return true;
+        }
+        MedicWorks();
+        return false;
     }
 }
